@@ -10,7 +10,7 @@
            file section.
                fd carsFile.
                    01 bufferLine pic x(64).
-            WORKING-STORAGE SECTION.
+            LOCAL-STORAGE SECTION.
                01 eof pic x value "n".
 
 

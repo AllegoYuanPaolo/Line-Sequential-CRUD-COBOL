@@ -11,10 +11,11 @@ $set sourceformat"free"
            file section.
                fd carsFile.
                    01 bufferLine pic x(64).
-            WORKING-STORAGE SECTION.
+            LOCAL-STORAGE SECTION.
                01 eof pic x value "n".
                01 searchTerm pic x(64).
                01 match pic 9(1).
+               01 matchCount pic 99 value 0.
            procedure division.
                display "Search for a 911 model: "
                accept  searchTerm
@@ -35,8 +36,15 @@ $set sourceformat"free"
                                *> Display when a match is found; supports multple matches
                                if match > 0
                                    display "Found: " bufferLine
+                                   add 1 to matchCount
                                end-if
+                       end-read
                    end-perform
+                   
+                   if matchCount = 0
+                       display "No matches found for: " searchTerm
+                   end-if
+
                close carsFile
 
            goback.

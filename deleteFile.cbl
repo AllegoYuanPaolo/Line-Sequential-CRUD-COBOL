@@ -18,7 +18,7 @@ $set sourceformat"free"
                    01 carLine pic x(64).
                fd tempFile.
                    01 tempLine pic x(64).
-            WORKING-STORAGE SECTION.
+            LOCAL-STORAGE SECTION.
                01 searchKey pic x(64).
                01 eof pic x value 'n'.
                01 match pic 9.

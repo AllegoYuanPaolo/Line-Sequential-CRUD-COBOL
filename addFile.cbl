@@ -10,7 +10,7 @@
            file section.
                fd carFile.
                    01 carLine pic x(64).       
-            WORKING-STORAGE SECTION.
+            LOCAL-STORAGE SECTION.
            01 newCar pic x(64).
         PROCEDURE DIVISION.
         display "Enter new model: "
