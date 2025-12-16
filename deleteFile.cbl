@@ -39,7 +39,7 @@ $set sourceformat"free"
                        at end
                            move 'y' to eof
                        not at end
-                          if searchKey = owner
+                          if owner = searchKey
                               add 1 to matches
                               display "Deleting:"
                               display "Owner: " owner " | Car: "
