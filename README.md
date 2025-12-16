@@ -74,6 +74,8 @@ Mako            Nissan Sileighty
 
 It simply involves moving values into the file record's members (`owner`, `carOwned`) and writing the file record (`carFile-rec`).  
 
-> [!note] **NOTE:**
-> If you use groups as a file record, you may only use the group name in `WRITE`.  In this case, our file record is a group with a name of `carFile-rec` so we use `WRITE carFile-rec`.  If you try to `WRITE <member variable>`, it will silently fail and won't write anything on the file
+<fieldset><legend><b>NOTE:</b></legend>
+ If you use groups as a file record, you may only use the group name in <code>WRITE</code>.  In this case, our file record is a group with a name of <code>carFile-rec</code> so we use <code>WRITE carFile-rec</code>.  If you try to <code>WRITE [member variable]</code>, it will silently fail and won't write anything on the file
+</fieldset>
+
 
