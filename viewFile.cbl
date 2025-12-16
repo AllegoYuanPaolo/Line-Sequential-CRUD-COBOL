@@ -9,7 +9,9 @@
         DATA DIVISION.
            file section.
                fd carsFile.
-                   01 bufferLine pic x(64).
+                   01 carFile-rec. 
+                       02 owner pic x(16).
+                       02 carOwned pic x(32).
             LOCAL-STORAGE SECTION.
                01 eof pic x value "n".
 
@@ -21,7 +23,7 @@
                      at end
                           move "y" to eof
                      not at end
-                          display bufferLine
+                          display "Owner: " owner " | Car: " carOwned
                 end-read
               end-perform
               close carsFile

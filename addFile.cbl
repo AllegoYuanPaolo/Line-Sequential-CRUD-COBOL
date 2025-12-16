@@ -9,16 +9,24 @@
         DATA DIVISION.
            file section.
                fd carFile.
-                   01 carLine pic x(64).       
+                   01 carFile-rec.
+                      02 owner pic x(16).
+                      02 carOwned pic x(32).
             LOCAL-STORAGE SECTION.
-           01 newCar pic x(64).
+           01 in-NewRec.
+               02 in-Owner pic x(16).
+               02 in-CarOwned pic x(16).
         PROCEDURE DIVISION.
-        display "Enter new model: "
-        accept newCar
+        display "Enter owner: "
+        accept in-Owner
+
+        display "Enter car: "
+        accept in-CarOwned
 
         open extend carFile
-            move newCar to carLine
-            write carLine
+            move in-NewRec to carFile-rec
+            write carFile-rec
+            display "New record added!"
         close carFile
        goback.
  

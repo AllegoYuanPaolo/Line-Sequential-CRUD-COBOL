@@ -10,14 +10,17 @@ $set sourceformat"free"
         DATA DIVISION.
            file section.
                fd carsFile.
-                   01 bufferLine pic x(64).
+                   01 carFile-rec.
+                       02 owner pic x(16).
+                       02 carOwned pic x(32).
+
             LOCAL-STORAGE SECTION.
                01 eof pic x value "n".
-               01 searchTerm pic x(64).
-               01 match pic 9(1).
+               01 searchTerm pic x(16).
+       
                01 matchCount pic 99 value 0.
            procedure division.
-               display "Search for a 911 model: "
+               display "Enter owner to search record: "
                accept  searchTerm
 
                open input carsFile
@@ -26,18 +29,11 @@ $set sourceformat"free"
                            at end
                                move 'y' to eof
                            not at end
-                              *> Reset match counter
-                               move 0 to match
-                              
-                              *> Check if the searchTerm is in the current line
-                               inspect bufferLine tallying match for all
-                               searchTerm(1:function length(function trim(searchTerm)))
-                              
-                               *> Display when a match is found; supports multple matches
-                               if match > 0
-                                   display "Found: " bufferLine
-                                   add 1 to matchCount
-                               end-if
+                             if owner = searchTerm
+                               add 1 to matchCount
+                               display "Owner: " owner 
+                               " | Car: " carOwned
+                             end-if
                        end-read
                    end-perform
                    
