@@ -78,4 +78,51 @@ It simply involves moving values into the file record's members (`owner`, `carOw
  If you use groups as a file record, you may only use the group name in <code>WRITE</code>.  In this case, our file record is a group with a name of <code>carFile-rec</code> so we use <code>WRITE carFile-rec</code>.  If you try to <code>WRITE [member variable]</code>, it will silently fail and won't write anything on the file
 </fieldset>
 
+## `addFile`
+In this module, this is where we add another record
+It involves a [`LOCAL-STORAGE SECTION`](localStorage%20vs%20workingStorage.md)`group variable called `in-NewRec` whose members are used for input
+
+After the input is accepted, `in-NewRec` is then moved into `carFile-rec` where it will populate the variables.  Then, it will be written
+
+```cobol
+		open extend carFile
+            move in-NewRec to carFile-rec
+            write carFile-rec
+            display "New record added!"
+        close carFile
+```
+
+---
+# Retrieve
+There are two primary methods of Retrieving data: viewing all and searching specific data,
+Same goes for this code; `searchFile`, `viewFile`
+
+## `viewFile`
+We now use the `READ` block for opening files, which, as the name suggests, opens the file until it is in the End Of File.  The current record being read is stored inside the `FILE SECTION` declared variable.
+- It has to be inside a loop because  while `READ` reads each line (or record), points to the next record, but doesn't automatically display it
+
+In it's core, the `READ` block is essentially an if-else condition
+
+```COBOL
+		READ fileDescriptor
+			AT END
+				*> Code to do when it reaches the End Of File
+			NOT AT END
+				*> Code to do when it has records to read
+		END-READ
+```
+
+So let's translate our code into plain English to understand it better:
+```COBOL
+		perform until eof = "y"
+                read carsFile
+                     at end
+                          move "y" to eof
+                     not at end
+                          display "Owner: " owner " | Car: " carOwned
+                end-read
+	    end-perform
+```
+
+> *"Read the file `carsFile`.  At the end of file, set the value of `eof` to 'y'.  But if it isn't, display the current `owner` and their `carOwned` until the value of `eof` is 'y'. "*
 
