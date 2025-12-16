@@ -1,5 +1,5 @@
 # Line-Sequential CRUD Operations
-
+---
 ## NOTE: 
 - This is a code written in GnuCOBOL 3.3 via VS Code.  It may not work when directly copy-pasted into OpenCOBOL.  This is also made for a Windows environment (important for Update and Delete).  I suggest this be used as a reference
 - The CRUD Operations are summarized into a menu.  Run `CRUD.exe` to access the operations
@@ -16,6 +16,14 @@ Owner: Mako             | Car: Nissan Sileighty
 ```
 
 I've utilized `.dll` modules (or subprograms) whereas the menu program, `CRUD.exe` calls on the modules to isolate each operation, ensuring a cleaner code, and
+
+# Table of Contents
+- [Declaration](#Declarations)
+- [Create](#Create)
+- [Retrieve](#Retrive)
+- [Update](#Update)
+- [Delete](#Delete)
+
 
 ---
 # Declarations
@@ -174,7 +182,7 @@ You have a notepad with a list handwritten with a ballpen.  You are not allowed 
 </fieldset>
 
 We apply this in our code by declaring another file
-
+(from `updateFile.cbl`)
 ```cobol
 ENVIRONMENT DIVISION.
 	INPUT-OUTPUT SECTION.
@@ -268,7 +276,7 @@ If you want to remove an item from your list (that you cannot scratch off of), y
 
 - So modifying the previous logic:
 	- when we find a match, instead of prompting the user to input the new word and writing that directly into the new file; we skip writing that record
-
+(From `deleteFile.cbl`)
 ```cobol
 	  if owner = searchKey
 		  add 1 to matches
