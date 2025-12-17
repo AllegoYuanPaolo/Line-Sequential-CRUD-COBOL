@@ -88,7 +88,7 @@ It simply involves moving values into the file record's members (`owner`, `carOw
 
 ## `addFile`
 In this module, this is where we add another record
-It involves a [`LOCAL-STORAGE SECTION`](localStorage%20vs%20workingStorage.md)`group variable called `in-NewRec` whose members are used for input
+It involves a [`LOCAL-STORAGE SECTION`](localStorage%20vs%20workingStorage.md) group variable called `in-NewRec` whose members are used for input
 
 After the input is accepted, `in-NewRec` is then moved into `carFile-rec` where it will populate the variables.  Then, it will be written
 
